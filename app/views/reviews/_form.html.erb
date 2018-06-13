@@ -1,0 +1,6 @@
+<%# finds the movie and builds the reviews from that movie %>
+<%= simple_form_for([@movie, @movie.reviews.build]) do |f| %>
+  <%= f.input :rating %>
+  <%= f.input :comment %>
+  <%= f.button :submit %>
+<% end %>
