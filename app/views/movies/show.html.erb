@@ -4,25 +4,33 @@
     <%= image_tag @movie.movie_img.url(:movie_show), class: "movie-show" %>
   </div>
 
-    <div class="col-md-8">
-      <h2><%= @movie.title %></h2>
-      <p><%= @movie.description %></p>
-      <p><%= @movie.director %></p>
-      <p><%= @movie.year %></p>
-    </div>
+  <div class="col-md-8">
+      <div class="movie-info">
+        <h2><%= @movie.title %> (<%= @movie.year %>)</h2>
+        <h4>Director: <%= @movie.director %></h4>
 
-  </div>
+        <p><%= @movie.description %></p>
 
-<div class="row">
-  <div class="col-md-4">
-<!-- renders all the movie reviews for that particular movie -->
-    <%= render @movie.reviews %>
 
-    <div>
-      <%= link_to "Add Review", new_movie_review_path(@movie) %>
+        <h4>Average Rating</h4>
+        <div class="average-review-rating" data-score=<%=@average_review %></div>
+        <span> Based on <%= @movie.reviews.count %> review(s)</span>
+      </div>
     </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="reviews">
+        <h4>Reviews</h4>
+  <!-- renders all the movie reviews for that particular movie -->
+      <%= render @movie.reviews %>
+        <div>
+          <%= link_to "Add Review", new_movie_review_path(@movie) %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <%= link_to "Back", root_path %>
 
@@ -44,6 +52,7 @@
 		path: '/assets/'
 	});
 </script>
+
 
 <script>
 	$('.average-review-rating').raty({
